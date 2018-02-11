@@ -1,0 +1,15 @@
+	
+screen -t  
+screen -t  
+screen -t  
+screen -t  
+screen -t  
+screen -t  
+screen -t  
+
+#caption always "%{= kw}%?%-Lw%?%{+b kw}%n*%t%f %?(%u)%?%{= kw}%?%+Lw%?"
+#backtick 1 1 1 $HOME/.local/bin/cputemp.sh 
+#backtick 2 1 1 $HOME/.local/bin/cpufreq.sh 
+#backtick 3 1 1 $HOME/.local/bin/top.sh 
+#caption always "Load: %l | %2` | %3` | %1` "
+hardstatus alwayslastline "%?%{+b kw}%-Lw%?%{yK}%n*%f %t%?(%u)%?%?%{wk}%+Lw%? %{gk}%=%c:%s %{yk}%d/%M/%Y"
