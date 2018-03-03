@@ -1,0 +1,8 @@
+[user]
+	name = rahul patil
+	password = rahul9860
+	email = rahul.deshmukhpatil@gmail.com
+[core]
+    editor = vim
+[diff]
+    tool = vimdiff
