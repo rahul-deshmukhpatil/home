@@ -1,0 +1,7 @@
+#apt check version installed and available installation candidates for distro
+apt-cache policy <package name> 
+
+#apt check all versions on all remote repos
+apt-cache madison <package name>
+apt list -a <package name>
+

@@ -1,121 +1,3 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
-
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
-
 # General grep for the commands
 #####################################################
 alias g='grep --color -inr '
@@ -123,8 +5,19 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+alias lss=`ls -lS`
+alias lssh=`ls -lS | head`
+alias lst=`ls -lt`
+alias lsth=`ls -lt | head`
+
+alias codingtests='cd ~/bitbucket/codingtests'
+alias codility='cd ~/bitbucket/codingtests/codility'
+alias csharp='cd ~/bitbucket/Notes-and-Docs/c#'
+alias screenrc='vim ~/.screenrc'
+
+
 #####################################################
-#			SVN commands 							# 
+#			SVN commands 							#
 #####################################################
 
 alias svu='svn -R revert *;sshpass -p $PASSWORD svn  up'
@@ -135,9 +28,9 @@ alias svi='sshpass -p $PASSWORD svn  info'
 # svn  log now puts log into .log
 ##################################################
 function svl {
-	echo "sshpass -p $PASSWORD svn  log "$1" > .log"
-	sshpass -p $PASSWORD svn  log "$1" > .log
-	head .log
+    echo "sshpass -p $PASSWORD svn  log "$1" > .log"
+    sshpass -p $PASSWORD svn  log "$1" > .log
+    head .log
 }
 
 # svn blame
@@ -145,24 +38,13 @@ function svl {
 function svb {
     ls "$@" | while read fileName
     do
-        echo "sshpass -p $PASSWORD svn  blame $fileName > .$fileName.blame"
-        sshpass -p $PASSWORD svn  blame $fileName > .$fileName.blame
+		echo "sshpass -p $PASSWORD svn  blame $fileName > .$fileName.blame"
+		sshpass -p $PASSWORD svn  blame $fileName > .$fileName.blame
     done
 }
 
-# svn co 
-##################################################
-function svc {
-    ls "$@" | while read fileName
-    do
-		logFile=`basename $fileName`
-		logFile="$logFile"".co"
-        echo "sshpass -p $PASSWORD svn co  $fileName > $logFile"
-        sshpass -p $PASSWORD svn co  $fileName > $logFile 
-    done
-}
 
-#function to find screenof pid
+# function to find screenof pid
 ##############################################################
 function  pid2screen {
 	if [ "$#" -ne 1 ]; then
@@ -192,19 +74,178 @@ function  pid2screen {
 # screenrc functions
 ###############################################################
 function welcome {
-	echo "hi"
+    echo "hi"
 }
 
 # Setting ulimit for core dump enabling
 #############################################################
 ulimit -c unlimited
 
-# source self 
+# source self
 #############################################################
-alias bs='source $HOME/.bashrc'
+function rld() {source $HOME/.bashrc;}
 
-# python source script 
+# python source script
 #############################################################
 export PYTHONSTARTUP=~/.pystartup
 
 
+# cd commands
+#############################################################
+function home { cd ~/bitbucket/home;}
+function bashrc { vim ~/bitbucket/home/bashrc; rld;}
+
+
+# apt commands
+#############################################################
+function apti { sudo aptitude install $@;}
+function apts { sudo aptitude search $@;}
+function aptu { sudo aptitude update $@;}
+
+# formatting commands flake
+#############################################################
+function pep8()
+{
+    gdo_files=`gdo`
+    echo $gdo_files | grep "\.py" | xargs autopep8 --in-place
+}
+
+
+# git comands
+#############################################################
+function current_branch_name()
+{
+    git branch | grep -v \* | head -1
+}
+
+alias ga='git add -u'
+alias gd='git diff'
+alias grh='git reset --hard'
+alias gst='git status'
+alias gclone='git clone'
+alias gdt='git difftool'
+function gdo()
+{
+    git diff --name-only --relative
+}
+
+alias gdom='git diff --name-only --relative master'
+
+alias gdm='git diff master'
+
+function gcb
+{
+    branch=`current_branch_name`
+    if ["$branch" == "master"]
+    then
+    gcm
+    fi
+    git checkout $branch
+}
+
+alias gl='git log'
+alias glv='git log --decorate=full | vi -'
+alias gb='git branch'
+
+# function gco()
+# {
+#	git checkout $@
+# }
+#
+# function gp()
+# {
+#	git pull
+# }
+#
+# function gcm()
+# {
+#	git checkout master
+# }
+#
+# function gmom()
+# {
+#	branch=`get_branch`
+#	gcm
+#	gp
+#	gco $branch
+#	git merge origin master
+# }
+
+function get_branch()
+{
+	branch=`git branch | grep  '^* ' | sed 's/^\* //'`
+
+	if [ "$branch" != "master" ];
+	then
+		echo "$branch"
+	else
+		echo "please-check-if-you-are-working-on-master-branch"
+	fi
+
+}
+
+function gpush()
+{
+	branch=`get_branch`
+	git push origin $branch
+}
+
+function gdelete()
+{
+	branch=$1
+	if [ "$branch" != "master" ];
+	then
+		git push -d origin $branch 
+		git branch -D $branch 
+	else
+		echo "Trying to push directly to master !!!"
+	fi
+}
+
+function gcommit()
+{
+	read -p "Commit message : " -r message
+	pep8
+	git add -u
+	git commit -m "$message" "$@"
+	gpush
+}
+
+# smart functions
+#############################################################
+function ldir()
+{
+	dir=$1
+	echo `find $dir -type d -printf "%T@ %p\n" | sort -n | cut -d ' ' -f 2 | tail -1`
+}
+
+function lfile()
+{
+	dir=$1
+	echo `find $dir -type f -printf "%T@ %p\n" | sort -n | cut -d ' ' -f 2 | tail -1`
+}
+
+
+export EDITOR=vim
+
+function rssh()
+{
+	ssh rahul@hpz820
+}
+
+function fn()
+{
+	find . -name $@
+}
+
+function commands
+{
+	commands_file="$HOME/commands.txt"
+	if [ "$#" -eq 0 ];
+	then
+		vim $commands_file
+		exit 0
+	else
+		ag $1 $commands_file
+	fi
+}
