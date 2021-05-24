@@ -5,10 +5,10 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias lss=`ls -lS`
-alias lssh=`ls -lS | head`
-alias lst=`ls -lt`
-alias lsth=`ls -lt | head`
+alias lss='ls -lS'
+alias lssh='ls -lS | head'
+alias lst='ls -lt'
+alias lsth='ls -lt | head'
 
 alias codingtests='cd ~/bitbucket/codingtests'
 alias codility='cd ~/bitbucket/codingtests/codility'
