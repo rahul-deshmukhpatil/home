@@ -4,10 +4,11 @@ alias g='grep --color -inr '
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias bb='cd ~/bitbucket'
 
-alias lss='ls -lS'
+alias lss='ls -lS | head'
 alias lssh='ls -lS | head'
-alias lst='ls -lt'
+alias lst='ls -lt | head'
 alias lsth='ls -lt | head'
 
 alias codingtests='cd ~/bitbucket/codingtests'
@@ -104,10 +105,12 @@ function aptu { sudo aptitude update $@;}
 
 # formatting commands flake
 #############################################################
-function pep8()
+function pep8_flake8()
 {
     gdo_files=`gdo`
     echo $gdo_files | grep "\.py" | xargs autopep8 --in-place
+    echo $gdo_files | grep "\.py" | xargs flake8
+	return "$?"
 }
 
 
@@ -133,43 +136,58 @@ alias gdom='git diff --name-only --relative master'
 
 alias gdm='git diff master'
 
-function gcb
+function gfp()
 {
-    branch=`current_branch_name`
-    if ["$branch" == "master"]
-    then
-    gcm
-    fi
+	git fetch
+	git pull
+}
+
+function gb()
+{
+	branch=$1
+	if [[ $branch = "" ]]; then
+		git branch
+		return
+	fi
+
+	all_branches=`git branch | grep $branch | head -1`
+	echo "All branches : $all_branches"
+	branch=`echo $all_branches | head -1 | sed 's/ //g'`
+	echo "checking out : $branch"
     git checkout $branch
+}
+
+function gcb()
+{
+	gb $@
 }
 
 alias gl='git log'
 alias glv='git log --decorate=full | vi -'
-alias gb='git branch'
 
-# function gco()
-# {
-#	git checkout $@
-# }
-#
-# function gp()
-# {
-#	git pull
-# }
-#
-# function gcm()
-# {
-#	git checkout master
-# }
-#
-# function gmom()
-# {
-#	branch=`get_branch`
-#	gcm
-#	gp
-#	gco $branch
-#	git merge origin master
-# }
+function gco()
+{
+	git checkout $@
+}
+
+function gp()
+{
+	git pull
+}
+
+function gcm()
+{
+	git checkout master
+}
+
+function gmom()
+{
+	branch=`get_branch`
+	gcm
+	gp
+	gco $branch
+	git merge origin master
+}
 
 function get_branch()
 {
@@ -186,7 +204,28 @@ function get_branch()
 
 function gpush()
 {
+	ans="Y"
+	if [ "$1" != "" ];
+	then
+		echo "Push to remote: "
+		read ans
+	fi
+
+
+	if [ "$ans" != "Y" ];
+	then
+		echo "[input: $ans] : Not pushing to remote "
+		return
+	fi
+
 	branch=`get_branch`
+
+	if [ "$branch" = "master" ];
+	then
+		echo "[input: $branch] not pushing to master"
+		return
+	fi
+
 	git push origin $branch
 }
 
@@ -204,11 +243,18 @@ function gdelete()
 
 function gcommit()
 {
-	read -p "Commit message : " -r message
-	pep8
+	echo "Commit message : " 
+	read -r message
+	pep8_flake8
+	if [ $? -ne 0 ];
+	then
+		echo "Failed pep8 or  flake8"
+		return -1
+	fi
+
 	git add -u
 	git commit -m "$message" "$@"
-	gpush
+	gpush "ask_before_pushing"
 }
 
 # smart functions
