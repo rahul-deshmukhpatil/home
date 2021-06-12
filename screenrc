@@ -9,6 +9,9 @@ screen -t
 screen -t
 screen -t
 
+# disables the visual bell
+# vbell off
+
 # caption always "%{= kw}%?%-Lw%?%{+b kw}%n*%t%f %?(%u)%?%{= kw}%?%+Lw%?"
 # backtick 1 1 1 $HOME/bitbucket/home/local/bin/cputemp.sh
 # backtick 2 1 1 $HOME/bitbucket/home/local/bin/cpufreq.sh
