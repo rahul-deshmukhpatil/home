@@ -107,7 +107,13 @@ function aptu { sudo aptitude update $@;}
 #############################################################
 function pep8_flake8()
 {
-    gdo_files=`gdo`
+    gdo_files=`gdo | grep "\.py"` 
+	
+	if [[ $gdo_files == "" ]];
+	then
+		return 0
+	fi
+
     echo $gdo_files | grep "\.py" | xargs autopep8 --in-place
     echo $gdo_files | grep "\.py" | xargs flake8
 	return "$?"
@@ -153,6 +159,7 @@ function gb()
 	all_branches=`git branch | grep $branch | head -1`
 	echo "All branches : $all_branches"
 	branch=`echo $all_branches | head -1 | sed 's/ //g'`
+	branch=`echo $branch | sed 's/*//g'`
 	echo "checking out : $branch"
     git checkout $branch
 }
@@ -160,6 +167,7 @@ function gb()
 function gcb()
 {
 	gb $@
+	return 0
 }
 
 alias gl='git log'
@@ -167,7 +175,12 @@ alias glv='git log --decorate=full | vi -'
 
 function gco()
 {
-	git checkout $@
+	if [[ $1 != "-b" ]];
+	then
+		gb $@
+	else
+		git checkout $@
+	fi
 }
 
 function gp()
@@ -184,7 +197,7 @@ function gmom()
 {
 	branch=`get_branch`
 	gcm
-	gp
+	gfp
 	gco $branch
 	git merge origin master
 }
@@ -244,17 +257,24 @@ function gdelete()
 function gcommit()
 {
 	echo "Commit message : " 
-	read -r message
-	pep8_flake8
-	if [ $? -ne 0 ];
+	message="$@"
+
+	if [[ $message == "" ]];
 	then
-		echo "Failed pep8 or  flake8"
+		read -r message
+	fi
+	message="-m $message"
+
+	pep8_flake8
+	if [[ $? -ne 0 ]]
+	then
+		echo "Failed pep8 or flake8"
 		return -1
 	fi
 
 	git add -u
-	git commit -m "$message" "$@"
-	gpush "ask_before_pushing"
+	git commit "$message"
+	gpush "Y"
 }
 
 # smart functions
