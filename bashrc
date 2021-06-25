@@ -214,9 +214,9 @@ function get_branch()
 function gpush()
 {
 	ans=$1
-	[[ ! $ans ]]  && echo "Push to remote:" && read ans
+	[[ ! $ans ]]  && echo "Push to remote[Y?]:" && read ans
 
-	[[ $ans != Y ]] && echo 'Not pushing to remote' && return
+	[[ $ans != Y ]] && return
 
 	branch=`get_branch`
 	case $branch in
@@ -272,7 +272,7 @@ function gcommit()
 
 	git add -u
 	git commit "$message"
-	gpush "Y"
+	gpush Y
 }
 
 # smart functions
