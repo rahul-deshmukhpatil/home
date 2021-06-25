@@ -206,46 +206,36 @@ function get_branch()
 	then
 		echo "$branch"
 	else
-		echo "please-check-if-you-are-working-on-master-branch"
+		echo "you-are-on-master"
 	fi
 
 }
 
 function gpush()
 {
-	ans="Y"
-	if [ "$1" != "" ];
-	then
-		echo "Push to remote: "
-		read ans
-	fi
+	[[ $1 != '' ]] && echo "Push to remote:" && read ans
 
-
-	if [ "$ans" != "Y" ];
-	then
-		echo "[input: $ans] : Not pushing to remote "
-		return
-	fi
+	[[ $ans != Y ]] && echo 'Not pushing to remote' && return
 
 	branch=`get_branch`
 	case $branch in
-		'master') its_master_branch=true ;;
+		you-are-on-master) its_master_branch=true ;;
 		*)	its_master_branch=false ;;
 	esac
 	
 	keyword_found=$(git remote show origin | grep -c deshmukhpatil)
 	case $keyword_found in
-		0) its_not_personal_repo=true ;;
-		*) its_not_personal_repo=false ;;
+		0) its_personal_repo=false ;;
+		*) its_personal_repo=true ;;
 	esac
 
-	if [[ $its_master_branch && its_not_personal_repo ]];
+	if $its_master_branch && $its_personal_repo;
 	then
-		echo "[input: $branch] not pushing to master"
+		git push origin master
 		return
 	fi
 
-	git push origin $branch
+	[[ $branch != master ]] && git push origin $branch
 }
 
 function gdelete()
