@@ -175,12 +175,7 @@ alias glv='git log --decorate=full | vi -'
 
 function gco()
 {
-	if [[ $1 != "-b" ]];
-	then
-		gb $@
-	else
-		git checkout $@
-	fi
+	git checkout $@
 }
 
 function gp()
