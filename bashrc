@@ -213,7 +213,8 @@ function get_branch()
 
 function gpush()
 {
-	[[ $1 != '' ]] && echo "Push to remote:" && read ans
+	ans=$1
+	[[ ! $ans ]]  && echo "Push to remote:" && read ans
 
 	[[ $ans != Y ]] && echo 'Not pushing to remote' && return
 
@@ -235,6 +236,7 @@ function gpush()
 		return
 	fi
 
+	# additional check for its not master branch
 	[[ $branch != master ]] && git push origin $branch
 }
 
