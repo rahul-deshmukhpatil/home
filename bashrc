@@ -228,8 +228,9 @@ function gpush()
 	fi
 
 	branch=`get_branch`
+	personal_repo=$(git remote show origin | grep -c deshmukhpatil)
 
-	if [ "$branch" = "master" ];
+	if [[ $branch = 'master' || $personal_repo != 0 ]];
 	then
 		echo "[input: $branch] not pushing to master"
 		return
