@@ -139,6 +139,7 @@ function gdo()
 }
 
 alias gdom='git diff --name-only --relative master'
+alias gpom='git push origin master'
 
 alias gdm='git diff master'
 
@@ -256,7 +257,7 @@ function gcommit()
 
 	if [[ $message == "" ]];
 	then
-		read -r message
+		message="no commit message"
 	fi
 	message="-m $message"
 
