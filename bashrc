@@ -272,6 +272,8 @@ function gcommit()
 
 	git add -u
 	git commit "$message"
+	gfp
+	gmom
 	gpush Y
 }
 
