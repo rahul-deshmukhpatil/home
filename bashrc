@@ -301,6 +301,7 @@ function rssh()
 
 function fn()
 {
+	[[ $2 != '' ]] && find $2 -name $1 && return;
 	find . -name $@
 }
 
