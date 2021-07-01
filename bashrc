@@ -307,12 +307,11 @@ function fn()
 
 function commands
 {
-	commands_file="$HOME/commands.txt"
-	if [ "$#" -eq 0 ];
-	then
-		vim $commands_file
-		exit 0
-	else
-		ag $1 $commands_file
-	fi
+	personal_commands=~/bitbucket/home/commands.txt
+	commands_file="$HOME/commands.txt $personal_commands"
+
+	files="$personal_commands $commands_file"
+	[[ $# = 0 ]] && vim -O $files && return
+
+	ag $1 $files 
 }
