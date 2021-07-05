@@ -270,7 +270,7 @@ function gcommit()
 		return -1
 	fi
 
-	git add -u
+	gdo | grep -Fv -e "exchange.py" -e "ini" -e "cfg" | xargs git add -u
 	git commit "$message"
 	gfp
 	gmom
