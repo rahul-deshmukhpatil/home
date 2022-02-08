@@ -105,8 +105,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-. /home/rahul/bitbucket/home/bashrc
-. /home/rahul/bitbucket/bmll-home/bmllrc.sh
+. /home/rahul/bitbucket/home/allrc.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
