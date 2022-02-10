@@ -1,9 +1,3 @@
-function gfp()
-{
-	git fetch
-	git pull
-}
-
 alias install_jupyter='conda install -c conda-forge notebook'
 
 alias db='sudo -u postgres psql' 
