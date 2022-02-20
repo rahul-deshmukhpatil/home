@@ -5,6 +5,13 @@ alias sql='sudo -u postgres psql'
 
 alias 388='source activate py388'
 
+
+function creq()
+{
+	conda install --file requirements.txt
+	conda install --file requirements-dev.txt
+}
+
 function conl()
 {
 	conda env list
@@ -35,14 +42,14 @@ function get_currdir_or_name()
 	echo $project
 }
 
-function cona()
+function conda_activate()
 {
-	project=`get_currdir_or_name $1`
+	project=$1
 	current_env=`conl | grep '\*' | cut -d ' ' -f 1`
 	
 	echo "changing from $current_env to $project"	
 
-	if [ "$project" = "$current_env" ];
+	if [[ "$project" == "$current_env" ]];
 	then
 		return
 	fi
@@ -51,15 +58,47 @@ function cona()
 	conl
 }
 
-function conc()
+function cona()
+{
+	project=`get_currdir_or_name $1`
+  	conda_activate $project
+}
+
+function pcona()
+{
+	project=`get_currdir_or_name $1`
+	project="pypy-$project "
+	conda_activate $project
+}
+
+function conda_create()
 {
 	cond
 	envName=`get_currdir_or_name $1`
+	prefix=$2
 
-	conda create -n $envName python=3.8
-	cona $envName
-	req
+  if [[ $prefix == 'pypy' ]];
+  then
+    conda create -n $envName pypy
+    cona $envName
+    creq
+  else
+    conda create -n $envName python=3.8
+    cona $envName
+    req
+  fi
+
 	conl
+}
+
+function pconc()
+{
+    conda_create 'pypy' $@
+}
+
+function conc()
+{
+    conda_create $@
 }
 
 function req()

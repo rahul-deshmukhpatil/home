@@ -17,3 +17,5 @@ echo ". $script_dir/bashrc" >> ~/.bashrc
 source ~/.bashrc
 
 bash -x $script_dir/install_packages.sh
+
+
