@@ -12,7 +12,7 @@ git config --global user.email "rahul.deshmukhpatil@gmail.com"
 git config --global user.name "rahul patil"
 
 echo "" >> ~/.bashrc
-echo ". $script_dir/bashrc" >> ~/.bashrc
+echo ". $script_dir/bashrc.sh" >> ~/.bashrc
 
 source ~/.bashrc
 
