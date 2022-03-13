@@ -94,7 +94,7 @@ export PYTHONSTARTUP=~/.pystartup
 # cd commands
 #############################################################
 function home { cd ~/bitbucket/home;}
-function bashrc { vim ~/bitbucket/home/bashrc.sh; rld;}
+function bashrc { vim ~/bitbucket/home; rld;}
 
 
 # apt commands

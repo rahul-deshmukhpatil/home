@@ -1,7 +1,7 @@
 #!/bin/bash
 sudo apt-get install aptitude
-sudo aptitude install --assume-yes curl screen htop vim vlc cmake tree git libboost-dev libboost-filesystem-dev python3-pip net-tools
-sudo aptitude install --assume-yes silversearcher-ag tldr 
+sudo aptitude install --assume-yes curl screen htop vim vlc cmake tree rename git libboost-dev libboost-filesystem-dev python3-pip net-tools rlwrap
+sudo aptitude install --assume-yes silversearcher-ag tldr fzf 
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 mkdir ~/.vim/plugged

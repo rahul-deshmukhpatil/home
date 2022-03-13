@@ -44,13 +44,6 @@ function lcd()
 	cd $latest
 }
 
-function vl()
-{
-	dir=$1
-	filename=$(lfile $dir)
-	vim $filename
-}
-
 function logs_impl()
 {
 	base_dir=$1
@@ -61,6 +54,52 @@ function logs_impl()
 	zcat *.gz| head -1
 	ls -l 
 }
+
+
+function get_prod_or_test()
+{
+  env=$1
+  dirname='test'
+  if [[ $env == 'p' || $env == 'prod' ]];
+  then
+    dirname='prod'
+  fi
+  echo $dirname
+}
+
+function get_logs_or_db()
+{
+  env=$1
+  dirname='logs'
+  if [[ $env == 'd' || $env == 'db' ]];
+  then
+    dirname='db'
+  fi
+  echo $dirname
+}
+
+function vl()
+{
+  dirname=$(get_prod_or_test $1)
+	date=`date '+%Y%m%d'`
+  ls -t ~/bitbucket/$dirname/logs/$date/*/*/*.log | xargs vi -p
+}
+
+alias vlt='vl t'
+alias vlp='vl p'
+
+function zcd()
+{
+  dirname=$(get_prod_or_test $1)
+  logs_db=$(get_logs_or_db $2)
+	date=$(date '+%Y%m%d')
+  cd ~/bitbucket/$dirname/$logs_db/$date/mktdata/zerodha/
+}
+
+alias pd='zcd p d'
+alias pl='zcd p l'
+alias td='zcd t d'
+alias tl='zcd t l'
 
 function logs() { logs_impl ~/bitbucket/db/; }
 function tlogs() { logs_impl ~/bitbucket/test/; }
