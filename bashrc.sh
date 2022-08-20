@@ -5,6 +5,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias bb='cd ~/bitbucket'
+alias h='cd ~/bitbucket/home'
 
 alias lss='ls -lS | head'
 alias lssh='ls -lS | head'

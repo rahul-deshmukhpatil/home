@@ -1,5 +1,7 @@
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+bash -x $script_dir/install_packages.sh
+
 ln -s $script_dir/screenrc ~/.screenrc 
 ln -s $script_dir/vimrc ~/.vimrc
 
@@ -16,6 +18,5 @@ echo ". $script_dir/bashrc.sh" >> ~/.bashrc
 
 source ~/.bashrc
 
-bash -x $script_dir/install_packages.sh
 
 

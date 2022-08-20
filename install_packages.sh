@@ -11,7 +11,10 @@ sudo aptitude install --assume-yes python3-dev cmake
 
 
 # pypy
-sudo add-apt-repository ppa:pypy/ppa
+# its available
+#sudo add-apt-repository ppa:pypy/ppa
 sudo apt update
 sudo apt install pypy3
 
+#for jetbrains toolbox
+sudo aptitude install --assume-yes libfuse2

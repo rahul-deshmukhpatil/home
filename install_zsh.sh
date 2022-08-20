@@ -38,5 +38,8 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 
-git clone https://github.com/powerline/fonts.git --depth=1
-cd fonts && ./install.sh && cd ..
+# NEEDS RESTART TO SEE FONTS EFFECTS !!!
+#git clone https://github.com/powerline/fonts.git --depth=1
+#cd fonts && ./install.sh && cd ..
+sudo apt-get install powerline fonts-powerline
+sudo fc-cache -f -v
