@@ -4,7 +4,9 @@ Integrated : Does not detected monitor
 Descrete : Optimus disabled : does not boot computer
 Desctete-Optimus-Enabled or Just optimux : Xorg : Just reconnect all DP/VGI cables, enable and disable and it works
 
+sudo systemctl restart gdm
 
+i915.enable_dc=0 intel_idle.max_cstate=2
 
 
 https://askubuntu.com/questions/1404771/screen-flicker-after-fresh-install-of-ubuntu-22-04
