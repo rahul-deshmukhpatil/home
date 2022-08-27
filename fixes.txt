@@ -1,0 +1,25 @@
+Config that works
+
+Integrated : Does not detected monitor
+Descrete : Optimus disabled : does not boot computer
+Desctete-Optimus-Enabled or Just optimux : Xorg : Just reconnect all DP/VGI cables, enable and disable and it works
+
+
+
+
+https://askubuntu.com/questions/1404771/screen-flicker-after-fresh-install-of-ubuntu-22-04
+https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1970426
+https://askubuntu.com/questions/1404771/screen-flicker-after-fresh-install-of-ubuntu-22-04
+
+I did the following changes and am now flicker-free for two days:
+
+In file /etc/default/grub I added to parameter GRUB_CMDLINE_LINUX_DEFAULT:
+i915.enable_dc=0
+intel_idle.max_cstate=2
+
+then:
+sudo update-grub
+reboot
+
+I will report in a week if this indeed fixes the flickering or if it just happens less often.
+I never had night-light enabled.

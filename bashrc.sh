@@ -115,8 +115,8 @@ function pep8_flake8()
 		return 0
 	fi
 
-    echo $gdo_files | grep "\.py" | xargs autopep8 --in-place
-    echo $gdo_files | grep "\.py" | xargs flake8
+    echo $gdo_files | grep "\.py" | xargs autopep8 --in-place --max-line-length 120
+    echo $gdo_files | grep "\.py" | xargs flake8 --max-line-length 120
 	return "$?"
 }
 
