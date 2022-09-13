@@ -18,3 +18,6 @@ sudo apt install pypy3
 
 #for jetbrains toolbox
 sudo aptitude install --assume-yes libfuse2
+
+#install ms courier font
+ sudo apt install ttf-mscorefonts-installer

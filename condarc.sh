@@ -74,12 +74,14 @@ function pcona()
 function conda_create()
 {
 	cond
-	envName=`get_currdir_or_name $1`
-	prefix=$2
+	prefix=$1
+	envName=`get_currdir_or_name $2`
 
   if [[ $prefix == 'pypy' ]];
   then
-    conda create -n $envName pypy
+  	envName="pypy-$envName"
+    # echo "DEFAULT PYPY ISNTALLATION" && conda create -n $envName pypy
+    echo "DOWNLOADED PYTHON ISNTALLATION" && conda create -n $envName "$HOME/pypy3.9-v7.3.9-linux64/bin/pypy3.9" 
     cona $envName
     creq
   else
@@ -98,7 +100,7 @@ function pconc()
 
 function conc()
 {
-    conda_create $@
+    conda_create "non-pypy" $@
 }
 
 function req()

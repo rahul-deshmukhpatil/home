@@ -25,3 +25,9 @@ reboot
 
 I will report in a week if this indeed fixes the flickering or if it just happens less often.
 I never had night-light enabled.
+
+journalctl -b0 > journal.txt
+
+set grub boot line to
+intel_idle.max_cstate=4
+
