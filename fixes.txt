@@ -4,6 +4,14 @@ Integrated : Does not detected monitor
 Descrete : Optimus disabled : does not boot computer
 Desctete-Optimus-Enabled or Just optimux : Xorg : Just reconnect all DP/VGI cables, enable and disable and it works
 
+1. change default kernel to  5.15.0-47-generic 
+2. disable wayland
+3. the intel_idle.max_cstate=2 or set to 4 in  grub
+4. install or reinstall nouvou driver and firmware  ===> this worked for a while
+5. try disconnecting,disabling the monitor and restarting
+
+
+
 sudo systemctl restart gdm
 
 i915.enable_dc=0 intel_idle.max_cstate=2
@@ -31,3 +39,25 @@ journalctl -b0 > journal.txt
 set grub boot line to
 intel_idle.max_cstate=4
 
+
+
+
+
+1. upgrade ubuntu
+
+https://askubuntu.com/questions/1032357/how-to-switch-from-nvidia-to-nouveau-drivers-on-ubuntu-18
+https://askubuntu.com/questions/1356946/how-to-install-the-nouveau-drivers-on-ubuntu-20-04
+sudo apt update
+sudo apt full-upgrade
+sudo apt install xserver-xorg-video-nouveau
+
+https://installati.one/ubuntu/20.04/nouveau-firmware/
+
+2. install diplay link drivers 
+
+3. install dp driver
+ https://linuxconfig.org/graphics-driver-check-on-ubuntu-22-04
+ 
+4. docking station
+https://www.reddit.com/r/Ubuntu/comments/w6v2a1/anyone_get_a_lenovo_dock_working_on_ubuntu_22/
+90 or 170W https://www.reddit.com/r/thinkpad/comments/mkfqot/comment/gtg2cne/
