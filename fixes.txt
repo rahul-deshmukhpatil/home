@@ -52,6 +52,7 @@ sudo apt full-upgrade
 sudo apt install xserver-xorg-video-nouveau
 
 https://installati.one/ubuntu/20.04/nouveau-firmware/
+sudo apt-get -y autoremove --purge nouveau-firmware xserver-xorg-video-nouveau xserver-xorg-video-nouveau-hwe-18.04 
 
 2. install diplay link drivers 
 
