@@ -39,7 +39,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=3
-# zstyle ':omz:update' frequency 3
+zstyle ':omz:update' frequency 3
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -78,8 +78,6 @@ ENABLE_CORRECTION="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(zsh-syntax-highlighting
-	git
-	fzf
 	zsh-autosuggestions
 	virtualenv)
 
