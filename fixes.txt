@@ -5,12 +5,25 @@ Descrete : Optimus disabled : does not boot computer
 Desctete-Optimus-Enabled or Just optimux : Xorg : Just reconnect all DP/VGI cables, enable and disable and it works
 
 1. change default kernel to  5.15.0-47-generic 
-2. disable wayland
+2. disable wayland :  sudoedit /etc/gdm3/custom.conf
+	https://linuxconfig.org/how-to-enable-disable-wayland-on-ubuntu-20-04-desktop
 3. the intel_idle.max_cstate=2 or set to 4 in  grub
 4. install or reinstall nouvou driver and firmware  ===> this worked for a while
 5. try disconnecting,disabling the monitor and restarting
+6.1. on 22.04 just reconnecting monitor cable from laptop worked fine atleast for some time.
+6.2. but before that I had turned off turbo : echo "1" | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo
+	https://askubuntu.com/questions/1315671/external-monitor-randomly-goes-black-on-ubuntu-20-04-lts
+6.3 still to try: deleting the rm ~/.config/monitors.xml
 
+7. still to try: https://askubuntu.com/questions/773529/external-monitor-turns-off-for-several-seconds-every-5-10-minutes
+7.1 xradr change monitor freq
+7.2 ~ xset -dpms : turn off the enery settings
+ 
+8.1 still to try: KVM switch might be buggy
+9.1 still to try: DP expansion card might be faulty
+	https://askubuntu.com/questions/1407630/os-freezing-with-dual-monitors-on-ubuntu-22-04-lts
 
+ 
 
 sudo systemctl restart gdm
 

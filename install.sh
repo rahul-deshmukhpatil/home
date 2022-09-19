@@ -19,4 +19,5 @@ echo ". $script_dir/bashrc.sh" >> ~/.bashrc
 source ~/.bashrc
 
 
+bash -x $script_dir/install_zsh.sh
 
