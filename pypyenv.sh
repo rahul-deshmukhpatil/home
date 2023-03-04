@@ -6,7 +6,9 @@ function create_pypy()
 
 	# shellcheck disable=SC2088
 	# pypy_installation="$HOME/Downloads/pypy3.8-v7.3.8-linux64/bin/pypy3.8"
-	pypy_installation="$HOME/Downloads/pypy3.9-v7.3.9-linux64/bin/pypy3.9"
+	# pypy_installation="$HOME/Downloads/pypy3.9-v7.3.9-linux64/bin/pypy3.9"
+	# pypy_installation="$HOME/Downloads/pypy3.9-v7.3.11-linux64/bin/pypy3.9"
+	pypy_installation="$HOME/Downloads/pypy3.8-v7.3.11-linux64/bin/pypy3.8"
 
 	mkdir -p $HOME/pypyenv
 	virtenv_dir="$HOME/pypyenv/$env_name"

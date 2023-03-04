@@ -8,8 +8,8 @@ alias 388='source activate py388'
 
 function creq()
 {
-	conda install --file requirements.txt
-	conda install --file requirements-dev.txt
+	conda install -c conda-forge --file requirements.txt
+	conda install -c conda-forge --file requirements-dev.txt
 }
 
 function conl()
@@ -67,8 +67,7 @@ function cona()
 function pcona()
 {
 	project=`get_currdir_or_name $1`
-	project="pypy-$project "
-	conda_activate $project
+	source ~/pypyenv/$project-pypy/bin/activate
 }
 
 function conda_create()

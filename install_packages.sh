@@ -6,6 +6,7 @@ sudo aptitude install --assume-yes silversearcher-ag tldr fzf
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 mkdir ~/.vim/plugged
 sudo aptitude install --assume-yes python3-dev cmake
+sudo pip install virtualenv
 ~/.vim/plugged/youcompleteme/install.py  --clang-completer --clangd-completer --system-boost --enable-coverage --build-dir /tmp
 
 

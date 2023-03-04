@@ -6,6 +6,7 @@ alias v='cd ~/bitbucket/vesper2/vesper'
 alias v2='cd ~/bitbucket/vesper2'
 alias vb='cd ~/bitbucket/vectorbtpro'
 alias bt='cd ~/bitbucket/backtrader'
+alias fy='cd ~/bitbucket/feynman'
 
 function gt()
 {

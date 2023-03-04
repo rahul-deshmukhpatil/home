@@ -13,3 +13,8 @@ sudo nano UPower.conf
 
 PercentageLow=50
 PercentageCritical=35
+
+
+pip list 
+pip show
+pip search
