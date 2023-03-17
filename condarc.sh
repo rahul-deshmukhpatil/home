@@ -78,9 +78,13 @@ function conda_create()
 
   if [[ $prefix == 'pypy' ]];
   then
-  	envName="pypy-$envName"
+  	envName="$envName-pypy"
     # echo "DEFAULT PYPY ISNTALLATION" && conda create -n $envName pypy
-    echo "DOWNLOADED PYTHON ISNTALLATION" && conda create -n $envName "$HOME/pypy3.9-v7.3.9-linux64/bin/pypy3.9" 
+	# pypy_installation="$HOME/pypy3.9-v7.3.9-linux64/bin/pypy3.9"
+	# pypy_installation="$HOME/Downloads/pypy3.8-v7.3.11-linux64/bin/pypy3.8"
+	pypy_installation="$HOME/Downloads/pypy3.9-v7.3.11-linux64/bin/pypy3.9"
+    #echo "DOWNLOADED PYTHON ISNTALLATION" && conda create -n $envName $pypy_installation 
+    echo "DOWNLOADED PYTHON ISNTALLATION" && conda create  -c conda-forge -n $envName pypy python=3.9 
     cona $envName
     creq
   else
