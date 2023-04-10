@@ -96,7 +96,13 @@ function zcd()
   dirname=$(get_prod_or_test $1)
   logs_db=$(get_logs_or_db $2)
 	date=$(date '+%Y%m%d')
-  cd ~/bitbucket/$dirname/$logs_db/$date/mktdata/zerodha/
+
+	if [[ $logs_db == "" ]];
+	then
+	  cd ~/bitbucket/$dirname
+	else
+	  cd ~/bitbucket/$dirname/$logs_db/$date/mktdata/zerodha/
+	fi
 }
 
 alias pd='zcd p d'
