@@ -7,6 +7,7 @@ alias v2='cd ~/bitbucket/vesper2'
 alias vb='cd ~/bitbucket/vectorbtpro'
 alias bt='cd ~/bitbucket/backtrader'
 alias fy='cd ~/bitbucket/feynman'
+alias sd='cd /media/rahul/new/sandbox/sandbox-template/'
 
 function gt()
 {
