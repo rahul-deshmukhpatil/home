@@ -94,6 +94,13 @@ function vl()
 alias vlt='vl t'
 alias vlp='vl p'
 
+function zc()
+{
+	rm -rf ~/bitbucket/test/logs/$(date +%Y%m%d)
+	rm -rf ~/bitbucket/test/db/$(date +%Y%m%d)
+}
+
+
 function zcd()
 {
   dirname=$(get_prod_or_test $1)
