@@ -8,6 +8,7 @@ alias vb='cd ~/bitbucket/vectorbtpro'
 alias bt='cd ~/bitbucket/backtrader'
 alias fy='cd ~/bitbucket/feynman'
 alias sd='cd /media/rahul/spare/sandbox/sandbox-template/'
+alias sdt='cd /media/rahul/spare/sandbox/sandbox-template/tickdata'
 alias scr='screen -dR work'
 alias zotp='python ~/bitbucket/vesper2/scripts/zerodha_otp.py'
 
