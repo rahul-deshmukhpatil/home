@@ -11,6 +11,7 @@ alias sd='cd /media/rahul/spare/sandbox/sandbox-template/'
 alias sdt='cd /media/rahul/spare/sandbox/sandbox-template/tickdata'
 alias scr='screen -dR work'
 alias zotp='python ~/bitbucket/vesper2/scripts/zerodha_otp.py'
+alias fotp='python ~/bitbucket/vesper2/scripts/flattrade_otp.py'
 
 function gt()
 {
@@ -101,12 +102,11 @@ function zc()
 	rm -rf ~/bitbucket/test/db/$(date +%Y%m%d)
 }
 
-
 function zcd()
 {
   dirname=$(get_prod_or_test $1)
   logs_db=$(get_logs_or_db $2)
-	date=$(date '+%Y%m%d')
+  date=$(date '+%Y%m%d')
 
 	if [[ $logs_db == "" ]];
 	then
