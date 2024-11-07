@@ -16,6 +16,7 @@ alias codingtests='cd ~/bitbucket/codingtests'
 alias codility='cd ~/bitbucket/codingtests/codility'
 alias csharp='cd ~/bitbucket/Notes-and-Docs/c#'
 alias screenrc='vim ~/.screenrc'
+alias cppref='cd ~/bitbucket/Notes-and-Docs/c++/cppref'
 
 
 #####################################################
