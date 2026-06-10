@@ -18,7 +18,6 @@ alias csharp='cd ~/bitbucket/Notes-and-Docs/c#'
 alias screenrc='vim ~/.screenrc'
 alias cppref='cd ~/bitbucket/Notes-and-Docs/c++/cppref'
 
-
 #####################################################
 #			SVN commands 							#
 #####################################################

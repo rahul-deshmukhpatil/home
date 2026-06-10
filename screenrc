@@ -1,13 +1,51 @@
-screen -t
-screen -t
-screen -t
-screen -t
-screen -t
-screen -t
-screen -t
-screen -t
-screen -t
-screen -t
+# 
+screen -t # gre
+screen -t # quant
+screen -t # verbal 
+screen -t # vocab 
+screen -t  
+screen -t # home
+screen -t # mba
+screen -t # gregmat
+screen -t # vesper
+ 
+
+# https://stackoverflow.com/questions/7585069/run-commands-in-gnu-screen-windows-from-screenrc
+# ^M = cntrl+V then just press "enter"
+
+select 1 
+stuff "cd ~/Documents/all-docs/GRE/quant"
+select 2 
+stuff "verbal"
+select 3 
+stuff "vocab"
+select 5 
+stuff "cd ~/bitbucket/home"
+select 6 
+stuff "cd ~/Documents/all-docs/GRE/quant/prompts"
+select 7 
+stuff "v2;cona;zotp"
+select 8 
+stuff "cd ~/Documents/all-docs/GRE/gregmat"
+
+select 1 
+stuff "v2;cona;zotp"
+select 2 
+stuff "v2;cona;zotp"
+select 3 
+stuff "v2;cona;zotp"
+select 4 
+stuff "v2;cona;zotp"
+select 5 
+stuff "cd ~/bitbucket/home"
+select 6 
+stuff "v2;cona;zotp"
+select 7 
+stuff "vocab"
+
+#
+#select 5
+#stuff "cd ~/bitbucket/home"
 
 # disables the visual bell
 # vbell off
