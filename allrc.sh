@@ -5,10 +5,10 @@ source ~/bitbucket/home/vesperrc.sh
 source ~/bitbucket/home/custom_path_rc.sh
 source ~/bitbucket/home/grerc.sh
 
+# below are already covered by the command `source <(fzf --zsh)` 
+# at the end of ~/.fzf.zsh sourced in the zshrc
 # Append this line to ~/.zshrc to enable fzf keybindings for Zsh:
-
-source /usr/share/doc/fzf/examples/key-bindings.zsh
+# source /usr/share/doc/fzf/examples/key-bindings.zsh
 
 # Append this line to ~/.zshrc to enable fuzzy auto-completion for Zsh:
-
-source /usr/share/doc/fzf/examples/completion.zsh
+# source /usr/share/doc/fzf/examples/completion.zsh
