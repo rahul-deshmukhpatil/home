@@ -3,3 +3,58 @@ ssh-keygen -t ed25519 -C "rahul.deshmukhpatil@gmail.com"
 
 # copy paste behavior
 gsettings set org.gnome.desktop.interface gtk-enable-primary-paste true
+
+
+# virtual box guest additions installation
+
+
+# then add the below as optical drive
+	
+
+# Native Windows Booting Inside VirtualBox Reference Guide
+
+### 1. Create Raw VMDK Mapping Files
+	Run the raw mapping command inside your target VM folder. This links the physical EFI partition (1) and Windows partition (3) to a text pointer:
+	sudo VBoxManage internalcommands createrawvmdk -filename "$PWD/Win11Raw.vmdk" -rawdisk /dev/nvme0n1 -partitions 1,3
+
+	Fix the file ownership so your standard user profile can execute the files without root privileges:
+	sudo chown rahul:rahul Win11Raw.vmdk Win11Raw-pt.vmdk
+
+### 2. Configure Host Permissions
+	Grant your Linux user direct access to the raw NVMe block device by appending your account to the disk group:
+	sudo usermod -aG disk rahul
+
+	Force-apply the group assignment to your current terminal session immediately:
+	newgrp disk
+
+### 3. Change Virtual UEFI Boot Order (Bypass GRUB)
+	1. Turn on the VM and tap the 'ESC' key repeatedly to open the grey VirtualBox UEFI Menu.
+	2. Navigate to: Boot Maintenance Manager -> Boot Options -> Add Boot Option.
+	3. Select your physical EFI partition path from the list.
+	4. Browse down the directory tree: <EFI> -> Microsoft -> Boot -> select "bootmgfw.efi".
+	5. Input the descriptive name: "Windows Boot Manager" and select "Commit Changes and Exit".
+	6. Navigate to "Change Boot Order", use the '+' key to move "Windows Boot Manager" to the very top line, and press 'F10' to save.
+
+### 4. Install VirtualBox Guest Additions Drivers
+	Install the driver ISO package directly onto your Host Linux machine via the package manager:
+	sudo apt update && sudo apt install virtualbox-guest-additions-iso
+
+	Mount the local system path into the virtual machine's empty optical drive slot:
+	Path: /usr/share/virtualbox/VBoxGuestAdditions.iso
+
+	Inside the Windows 11 VM:
+	1. Open File Explorer, navigate to "This PC", and double-click the VirtualBox Guest Additions CD Drive.
+	2. Right-click "VBoxWindowsAdditions-amd64.exe" and select "Run as administrator".
+	3. Follow the setup wizard prompts, reboot the VM, and press 'Right Ctrl + F' to toggle true full-screen scaling.
+
+### 5. Establish Stable Internet Connectivity (Bridged Wireless Mode)
+	1. Open the VM Settings -> Network panel.
+	2. Set "Attached to" to "Bridged Adapter" and select your physical host Wi-Fi interface name (e.g., wlp...).
+	3. Expand the "Advanced" drop-down menu and set "Adapter Type" to: Intel PRO/1000 MT Server (82545EM).
+	4. Set "Promiscuous Mode" to: Allow All.
+	5. Check the "Cable Connected" box.
+	6. If the taskbar status icon fails to update inside Windows, right-click the network icon in the bottom-right status tray of the VirtualBox window frame to toggle the virtual cable disconnection off and back on.
+
+
+	
+

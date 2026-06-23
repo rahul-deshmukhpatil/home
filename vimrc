@@ -26,3 +26,7 @@ Plug 'kien/ctrlp.vim'
 call plug#end()
 
 set ts=4
+
+" shortcuts 
+nnoremap <C-n> :set number!<CR>
+

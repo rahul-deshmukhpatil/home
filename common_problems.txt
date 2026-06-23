@@ -2,10 +2,23 @@ unknown option: --scheme=history
 https://unix.stackexchange.com/a/665690
 
 
-Append this line to ~/.zshrc to enable fzf keybindings for Zsh:
+# Append this line to ~/.zshrc to enable fzf keybindings for Zsh:
 
    source /usr/share/doc/fzf/examples/key-bindings.zsh
 
-Append this line to ~/.zshrc to enable fuzzy auto-completion for Zsh:
+# Append this line to ~/.zshrc to enable fuzzy auto-completion for Zsh:
 
-      source /usr/share/doc/fzf/examples/completion.zsh
+    source /usr/share/doc/fzf/examples/completion.zsh
+
+
+# do not sleep when lid is closed
+
+	sudoedit /etc/systemd/logind.conf
+
+# To prevent Ubuntu from sleeping when you close the lid or disconnect an external monitor
+
+sudo vim /etc/systemd/logind.conf      
+	HandleLidSwitch=ignore
+	HandleLidSwitchExternalPower=ignore
+	HandleLidSwitchDocked=ignore
+
