@@ -17,10 +17,37 @@ git config --global --add difftool.prompt false
 # automatic login disabling
 	settings -> system -> users -> [unlock the user settings ] -> disable Automatic Login
 
-# virtual box guest additions installation
 
+# ssh enable and restart demons etc
+
+# Restart and permanently enable the mDNS network broadcast service
+	sudo systemctl enable --now avahi-daemon && sudo systemctl restart avahi-daemon
+
+# Restart and permanently enable the local DNS resolution engine
+	sudo systemctl enable --now systemd-resolved && sudo systemctl restart systemd-resolved
+
+# Restart and permanently enable the secure shell communication server
+	sudo systemctl enable --now ssh && sudo systemctl restart ssh
+
+# Permanent UFW firewall configuration for SSH (22/tcp) and mDNS (5353/udp)
+	sudo ufw allow 22/tcp comment 'Permanent SSH Access'
+	sudo ufw allow 5353/udp comment 'Permanent mDNS Broadcast'
+
+# Force UFW to Enable and Commit at Boot
+	sudo ufw enable
+
+# Confirm that the rules are correctly indexed and active by checking the status:bashsudo ufw status verbose
+	sudo ufw status verbose
+
+# Ensure the underlying firewall service initialization is tracking with the system kernel on power-up
+	sudo systemctl enable ufw
+
+
+# virtual box guest additions installation
+	sudo apt update && sudo apt install virtualbox-guest-additions-iso
 
 # then add the below as optical drive
+	/usr/share/virtualbox/VBoxGuestAdditions.iso
 	
 
 # Native Windows Booting Inside VirtualBox Reference Guide
