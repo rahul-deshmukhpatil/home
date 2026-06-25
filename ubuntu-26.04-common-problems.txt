@@ -1,6 +1,21 @@
+# generate ssh key
+ssh-keygen -t ed25519 -C "rahul.deshmukhpatil@gmail.com"
+
 # copy paste behavior
 gsettings set org.gnome.desktop.interface gtk-enable-primary-paste true
 
+
+# set git diff tool
+git config --global diff.tool vimdiff
+git config --global merge.tool vimdiff
+git config --global --add difftool.prompt false
+
+# automount the drive via GUI
+	Disks -> [select disk and drive] -> settings icon -> edit mount options 
+	toggle user session defaults -> set mount at system startup and edit mount point
+
+# automatic login disabling
+	settings -> system -> users -> [unlock the user settings ] -> disable Automatic Login
 
 # virtual box guest additions installation
 

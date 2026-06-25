@@ -28,6 +28,8 @@ stuff "v2;cona;zotp"
 select 8 
 stuff "cd ~/Documents/all-docs/GRE/gregmat"
 
+select 0 
+stuff "v2;cona;zotp"
 select 1 
 stuff "v2;cona;zotp"
 select 2 
