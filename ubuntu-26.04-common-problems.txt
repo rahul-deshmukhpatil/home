@@ -86,6 +86,11 @@ git config --global --add difftool.prompt false
 	2. Right-click "VBoxWindowsAdditions-amd64.exe" and select "Run as administrator".
 	3. Follow the setup wizard prompts, reboot the VM, and press 'Right Ctrl + F' to toggle true full-screen scaling.
 
+
+	Inside the ubuntu VM:
+	1. sudo apt-get install bzip2
+	2. sudo /run/media/rahul/VBOX_GAs_7.2.6/VBoxLinuxAdditions.run
+
 ### 5. Establish Stable Internet Connectivity (Bridged Wireless Mode)
 	1. Open the VM Settings -> Network panel.
 	2. Set "Attached to" to "Bridged Adapter" and select your physical host Wi-Fi interface name (e.g., wlp...).
