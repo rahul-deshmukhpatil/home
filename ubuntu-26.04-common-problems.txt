@@ -17,6 +17,14 @@ git config --global --add difftool.prompt false
 # automatic login disabling
 	settings -> system -> users -> [unlock the user settings ] -> disable Automatic Login
 
+	# Fix the GNOME Keyring Password Mismatch
+		# Open from settings : Passwords and Keys (also known as Seahorse), and open it
+		#For "Login" keyring, forcefully change the password once again
+
+	# then just to forcefully shutdown
+	systemctl poweroff --ignore-inhibitors
+
+
 
 # ssh enable and restart demons etc
 
