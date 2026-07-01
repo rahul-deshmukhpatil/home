@@ -56,6 +56,10 @@ git config --global --add difftool.prompt false
 
 # then add the below as optical drive
 	/usr/share/virtualbox/VBoxGuestAdditions.iso
+
+
+# VirtualBox virtual machine to display a custom resolution of 2560 × 1440 (1440p) when that option is completely missing from the Guest OS display settings
+	Just use 4k 16:9 resolution with 200% scaling
 	
 
 # Native Windows Booting Inside VirtualBox Reference Guide
